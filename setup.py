@@ -26,8 +26,20 @@ setup(
     install_requires=[
         "yoti>=2.10.0"
         "cryptography>=2.8.0",
-        "python-dotenv>=0.12.0"
     ],
+    extras_require={
+        "dev": [
+            "pre-commit==1.17.0",
+            "pytest>=3.6.0",
+            "pytest-cov>=2.7.1",
+            "pylint==1.9.4",
+            "pylint-exit>=1.1.0",
+            "python-coveralls==2.9.3",
+            "coverage==4.5.4",
+            "mock==2.0.0",
+            "virtualenv==15.2",
+        ],
+    },
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
