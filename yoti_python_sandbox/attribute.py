@@ -54,30 +54,6 @@ class SandboxAttribute(object):
         return self.__anchors
 
     @property
-    def sources(self):
-        """
-        Returns a filtered list of the associated anchors, only returning source anchors
-
-        :return: list of filtered source anchors
-        :rtype: list[SandboxAnchor]
-        """
-        return list(
-            filter(lambda a: a.anchor_type == config.ANCHOR_SOURCE, self.__anchors)
-        )
-
-    @property
-    def verifiers(self):
-        """
-        Returns a filtered list of the associated anchors, only returning verifier anchors
-
-        :return: list of filtered verifier anchors
-        :rtype: list[SandboxAnchor]
-        """
-        return list(
-            filter(lambda a: a.anchor_type == config.ANCHOR_VERIFIER, self.__anchors)
-        )
-
-    @property
     def derivation(self):
         """
         Returns the derivation of the attribute
