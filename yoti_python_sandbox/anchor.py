@@ -1,4 +1,4 @@
-from datetime import timezone
+import datetime
 
 from yoti_python_sdk.anchor import UNKNOWN_ANCHOR_TYPE
 
@@ -140,7 +140,12 @@ class SandboxAnchorBuilder(object):
         :return: the updated builder
         :rtype: SandboxAnchorBuilder
         """
-        self.__unix_microsecond_timestamp = timestamp.replace(tzinfo=timezone.utc).timestamp()
+
+        if not isinstance(timestamp, datetime.datetime):
+            raise TypeError("Provided timestamp must be of type 'datetime'")
+
+        unix_seconds = timestamp.timestamp()
+        self.__unix_microsecond_timestamp = int(unix_seconds * 1000000)
         return self
 
     def build(self):
