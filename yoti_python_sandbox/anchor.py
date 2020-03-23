@@ -1,3 +1,5 @@
+from datetime import timezone
+
 from yoti_python_sdk.anchor import UNKNOWN_ANCHOR_TYPE
 
 
@@ -24,7 +26,7 @@ class SandboxAnchor(object):
         self.__anchor_type = anchor_type
         self.__sub_type = sub_type
         self.__value = value
-        self.__timestamp = timestamp
+        self.__unix_microsecond_timestamp = timestamp
 
     @property
     def anchor_type(self):
@@ -59,12 +61,12 @@ class SandboxAnchor(object):
     @property
     def timestamp(self):
         """
-        Returns the anchor timestamp
+        Returns the microsecond unix anchor timestamp
 
         :return: the timestamp
         :rtype: long or None
         """
-        return self.__timestamp
+        return self.__unix_microsecond_timestamp
 
     def __dict__(self):
         return {
@@ -95,7 +97,7 @@ class SandboxAnchorBuilder(object):
         self.__type = None
         self.__value = None
         self.__sub_type = None
-        self.__timestamp = None
+        self.__unix_microsecond_timestamp = None
 
     def with_type(self, value):
         """
@@ -134,11 +136,11 @@ class SandboxAnchorBuilder(object):
         """
         Sets the timestamp of the anchor on the builder
 
-        :param int timestamp: the anchor timestamp
+        :param datetime timestamp: the anchor timestamp
         :return: the updated builder
         :rtype: SandboxAnchorBuilder
         """
-        self.__timestamp = timestamp
+        self.__unix_microsecond_timestamp = timestamp.replace(tzinfo=timezone.utc).timestamp()
         return self
 
     def build(self):
@@ -149,5 +151,5 @@ class SandboxAnchorBuilder(object):
         :rtype: SandboxAnchor
         """
         return SandboxAnchor(
-            self.__type, self.__sub_type, self.__value, self.__timestamp
+            self.__type, self.__sub_type, self.__value, self.__unix_microsecond_timestamp
         )
