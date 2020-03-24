@@ -1,9 +1,9 @@
 import os
 from distutils.util import convert_path
 
-from yoti_python_sandbox.age_verification import SandboxAgeVerificationBuilder
-from yoti_python_sandbox.client import SandboxClientBuilder
-from yoti_python_sandbox.token import YotiTokenRequestBuilder
+from .age_verification import SandboxAgeVerificationBuilder
+from .client import SandboxClientBuilder
+from .token import YotiTokenRequestBuilder
 
 DEFAULTS = {
     "YOTI_API_URL": "https://api.yoti.com",
