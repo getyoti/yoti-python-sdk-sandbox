@@ -24,7 +24,7 @@ setup(
     author="Yoti",
     author_email="websdk@yoti.com",
     install_requires=[
-        "yoti>=2.10.0"
+        "yoti>=2.10.2"
         "cryptography>=2.8.0",
     ],
     extras_require={

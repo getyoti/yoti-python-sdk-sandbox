@@ -7,9 +7,11 @@ Welcome to the Yoti Python Sandbox SDK. This repo contains the tools you need to
 ### Python version
 Please refer to [Travis](https://travis-ci.com/getyoti/yoti-python-sdk-sandbox) to see all compatible Python versions.
 
+Please email [sdksupport@yoti.com](mailto:sdksupport@yoti.com) if you require a version which is not listed here.
+
 ## Installing the Sandbox
 
-To import the Yoti SDK inside your project, you can use your favourite dependency management system.
+To import the Yoti Sandbox SDK inside your project, you can use your favourite dependency management system.
 If you are using pip, you can use the following command to set the Yoti Sandbox SDK as a dependency:
 
 ```shell
@@ -51,7 +53,7 @@ token_request = (YotiTokenRequestBuilder()
                  .with_given_names("Some Given Names")
                  .with_family_name("Some Family Name")
                  .with_full_name("Some Full Name")
-                 .with_date_of_birth("1980-01-01")
+                 .with_date_of_birth("1989-01-02")
                  .with_age_verification(age_verification)
                  .with_gender("Some Gender")
                  .with_phone_number("Some Phone Number")
