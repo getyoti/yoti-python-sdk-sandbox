@@ -68,3 +68,7 @@ token_response = client.setup_sharing_profile(token_request)
 # Use the share_token to get Activity Details like normal
 share_token = token_response.token
 ```
+
+## Additional Information
+
+For more information about the Yoti Sandbox, please visit https://developers.yoti.com/yoti/sandbox-app
