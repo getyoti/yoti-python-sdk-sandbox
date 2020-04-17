@@ -62,7 +62,8 @@ class SandboxClient(object):
 
         response_payload = signed_request.execute()
         if response_payload.status_code < 200 or response_payload.status_code >= 300:
-            raise SandboxException("Error making request to sandbox service: " + response_payload.status_code, response_payload)
+            raise SandboxException("Error making request to sandbox service: "
+                                   + str(response_payload.status_code), response_payload)
 
         parsed = json.loads(response_payload.text)
         return YotiTokenResponse(parsed["token"])
