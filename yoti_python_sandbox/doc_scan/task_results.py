@@ -2,7 +2,7 @@ from yoti_python_sdk.doc_scan import constants
 from yoti_python_sdk.utils import YotiSerializable
 
 
-class TaskResults(YotiSerializable):
+class SandboxTaskResults(YotiSerializable):
     def __init__(self, text_extraction_task):
         self.text_extraction_task = text_extraction_task
 
@@ -12,7 +12,7 @@ class TaskResults(YotiSerializable):
         }
 
 
-class TaskResultsBuilder(object):
+class SandboxTaskResultsBuilder(object):
     def __init__(self):
         self.__text_extraction_task = []
 
@@ -21,4 +21,4 @@ class TaskResultsBuilder(object):
         return self
 
     def build(self):
-        return TaskResults(self.__text_extraction_task)
+        return SandboxTaskResults(self.__text_extraction_task)
