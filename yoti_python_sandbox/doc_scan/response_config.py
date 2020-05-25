@@ -1,20 +1,37 @@
 from yoti_python_sdk.utils import YotiSerializable
 
-from .task_results import TaskResults
+from .check_reports import SandboxCheckReports
+from .task_results import SandboxTaskResults
 
 
 class ResponseConfig(YotiSerializable):
-    def __init__(self, task_results: dict, check_report):
+    def __init__(self, task_results, check_reports):
         self.__task_results = task_results
-        self.__check_report = check_report
+        self.__check_reports = check_reports
+
+    @property
+    def check_reports(self):
+        """
+        :return: the check reports
+        :rtype: CheckReports
+        """
+        return self.__check_reports
+
+    @property
+    def task_results(self):
+        """
+        :return: the task results
+        :rtype: SandboxTaskResults
+        """
+        return self.__task_results
 
     def to_json(self):
         payload = {}
         if self.__task_results is not None:
             payload["task_results"] = self.__task_results
 
-        if self.__check_report is not None:
-            payload["check_reports"] = self.__check_report
+        if self.__check_reports is not None:
+            payload["check_reports"] = self.__check_reports
 
         return payload
 
@@ -27,7 +44,7 @@ class ResponseConfigBuilder(object):
     def with_task_results(self, results):
         """
         :param results: the task result container
-        :type results: TaskResults
+        :type results: SandboxTaskResults
         """
         self.__task_results = results
         return self
