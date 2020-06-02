@@ -38,7 +38,11 @@ class SandboxCheckBuilder(object):
         return self
 
     def with_breakdown(self, breakdown):
-        self.__breakdown.append(breakdown)
+        self.__breakdowns.append(breakdown)
+        return self
+
+    def with_breakdowns(self, breakdowns):
+        self.__breakdown = breakdowns
         return self
 
     @property
