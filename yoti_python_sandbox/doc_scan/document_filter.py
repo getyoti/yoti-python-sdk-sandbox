@@ -17,7 +17,7 @@ class SandboxDocumentFilter(YotiSerializable):
     def to_json(self):
         return {
             "document_types": self.document_types,
-            "country_codes": self.country_codes
+            "country_codes": self.country_codes,
         }
 
 
@@ -29,10 +29,10 @@ class SandboxDocumentFilterBuilder(object):
     def with_document_type(self, document_type):
         self.__document_types.append(document_type)
         return self
-    
+
     def with_country_code(self, country_code):
         self.__country_codes.append(country_code)
         return self
-        
+
     def build(self):
         return SandboxDocumentFilter(self.__country_codes, self.__document_types)

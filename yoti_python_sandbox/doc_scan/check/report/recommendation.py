@@ -28,7 +28,7 @@ class SandboxRecommendation(YotiSerializable):
         return {
             "value": self.value,
             "reason": self.reason,
-            "recovery_suggestion": self.recovery_suggestion
+            "recovery_suggestion": self.recovery_suggestion,
         }
 
 
@@ -75,4 +75,6 @@ class SandboxRecommendationBuilder(object):
         return self
 
     def build(self):
-        return SandboxRecommendation(self.__value, self.__reason, self.__recovery_suggestion)
+        return SandboxRecommendation(
+            self.__value, self.__reason, self.__recovery_suggestion
+        )

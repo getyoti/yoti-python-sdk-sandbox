@@ -9,7 +9,7 @@ DEFAULTS = {
     "YOTI_API_URL": "https://api.yoti.com",
     "YOTI_API_PORT": 443,
     "YOTI_API_VERSION": "v1",
-    "YOTI_API_VERIFY_SSL": "true"
+    "YOTI_API_VERIFY_SSL": "true",
 }
 
 DEFAULT_SANDBOX_URL = DEFAULTS["YOTI_API_URL"] + "/sandbox/v1"
@@ -29,5 +29,5 @@ __all__ = [
     __version__,
     SandboxClientBuilder,
     SandboxAgeVerificationBuilder,
-    YotiTokenRequestBuilder
+    YotiTokenRequestBuilder,
 ]
