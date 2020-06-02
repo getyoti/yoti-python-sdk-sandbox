@@ -13,7 +13,8 @@ class SandboxCheckReports(YotiSerializable):
             document_authenticity_check=None,
             document_face_match_check=None,
             document_text_data_check=None,
-            liveness_checks=None
+            liveness_checks=None,
+            async_report_delay=None
     ):
         if document_authenticity_check is None:
             document_authenticity_check = []
@@ -31,6 +32,7 @@ class SandboxCheckReports(YotiSerializable):
         self.__document_face_match_check = document_face_match_check
         self.__document_text_data_check = document_text_data_check
         self.__liveness_checks = liveness_checks
+        self.__async_report_delay = async_report_delay
 
     @property
     def document_authenticity_checks(self):
@@ -48,12 +50,17 @@ class SandboxCheckReports(YotiSerializable):
     def liveness_checks(self):
         return self.__liveness_checks
 
+    @property
+    def async_report_delay(self):
+        return self.__async_report_delay
+
     def to_json(self):
         return {
             constants.ID_DOCUMENT_AUTHENTICITY: self.__document_authenticity_check,
             constants.ID_DOCUMENT_TEXT_DATA_CHECK: self.__document_text_data_check,
             constants.ID_DOCUMENT_FACE_MATCH: self.__document_face_match_check,
             constants.LIVENESS: self.__liveness_checks,
+            "async_report_delay": self.__async_report_delay,
         }
 
 
@@ -63,6 +70,7 @@ class SandboxCheckReportsBuilder(object):
         self.__document_face_match_checks = []
         self.__document_text_data_checks = []
         self.__liveness_checks = []
+        self.__async_report_delay = None
 
     def with_document_authenticity_check(self, document_authenticity_check):
         """
@@ -112,6 +120,24 @@ class SandboxCheckReportsBuilder(object):
         self.__liveness_checks.append(liveness_check)
         return self
 
+    def with_async_report_delay(self, async_report_delay):
+        """
+        The Async report delay is a timer (in seconds)
+        which simulates a delay between the Doc Scan
+        iFrame user journey and the result of the report,
+        set by your expectation.
+        By using this facility you can effectively handle
+        pending states, or results that are not returned
+        instantly (such as manual checks).
+
+        :param async_report_delay: delay in seconds
+        :type async_report_delay: int
+        :return: the builder
+        :rtype: SandboxCheckReportsBuilder
+        """
+        self.__async_report_delay = async_report_delay
+        return self
+
     def build(self):
         return SandboxCheckReports(self.__document_authenticity_checks, self.__document_face_match_checks,
-                                   self.__document_text_data_checks, self.__liveness_checks)
+                                   self.__document_text_data_checks, self.__liveness_checks, self.__async_report_delay)
