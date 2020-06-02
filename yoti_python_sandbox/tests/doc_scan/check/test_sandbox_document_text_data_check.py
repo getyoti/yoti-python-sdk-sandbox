@@ -33,3 +33,15 @@ def test_should_accept_document_filter():
                                    .build())
 
     assert result.document_filter == document_filter_mock
+
+
+def test_should_accept_with_breakdowns():
+    recommendation_mock = Mock(spec=SandboxRecommendation)
+    breakdowns_mock = [Mock(spec=SandboxBreakdown), Mock(spec=SandboxBreakdown)]
+
+    result = (SandboxDocumentTextDataCheckBuilder()
+                                   .with_recommendation(recommendation_mock)
+                                   .with_breakdowns(breakdowns_mock)
+                                   .build())
+
+    assert result.result.report.breakdown == breakdowns_mock
