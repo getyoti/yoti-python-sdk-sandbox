@@ -28,7 +28,7 @@ class SandboxBreakdown(YotiSerializable):
         return {
             "sub_check": self.sub_check,
             "result": self.result,
-            "details": self.details
+            "details": self.details,
         }
 
 

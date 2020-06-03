@@ -34,9 +34,18 @@ def test_builder_should_set_anchor_type():
 @pytest.mark.parametrize(
     "timestamp, expected_unix_microsecond_equivalent",
     [
-        (datetime(1960, 1, 4, 0, 0, 0, 000000, tzinfo=timezone.utc), int(-315360000000000)),
-        (datetime(2020, 3, 23, 12, 29, 49, 456789, tzinfo=timezone.utc), int(1584966589456789)),
-        (datetime(2050, 1, 1, 1, 1, 1, 456789, tzinfo=timezone.utc), int(2524611661456789)),
+        (
+            datetime(1960, 1, 4, 0, 0, 0, 000000, tzinfo=timezone.utc),
+            int(-315360000000000),
+        ),
+        (
+            datetime(2020, 3, 23, 12, 29, 49, 456789, tzinfo=timezone.utc),
+            int(1584966589456789),
+        ),
+        (
+            datetime(2050, 1, 1, 1, 1, 1, 456789, tzinfo=timezone.utc),
+            int(2524611661456789),
+        ),
     ],
 )
 def test_builder_should_set_timestamp(timestamp, expected_unix_microsecond_equivalent):
@@ -46,13 +55,8 @@ def test_builder_should_set_timestamp(timestamp, expected_unix_microsecond_equiv
 
 
 @pytest.mark.parametrize(
-    "timestamp",
-    [
-        "2006-11-02T15:04:05.010Z",
-        "2006-11-02T15:04:05.010",
-        -1,
-        123456789
-    ])
+    "timestamp", ["2006-11-02T15:04:05.010Z", "2006-11-02T15:04:05.010", -1, 123456789]
+)
 def test_builder_should_throw_error_for_invalid_timestamp(timestamp):
     with pytest.raises(TypeError):
         anchor = SandboxAnchor.builder().with_timestamp(timestamp).build()

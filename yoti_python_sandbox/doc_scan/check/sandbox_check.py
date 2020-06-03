@@ -21,9 +21,7 @@ class SandboxCheck(YotiSerializable):
         return self.__result
 
     def to_json(self):
-        return {
-            "result": self.result
-        }
+        return {"result": self.result}
 
 
 class SandboxCheckBuilder(object):

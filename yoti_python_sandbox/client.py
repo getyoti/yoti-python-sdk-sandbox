@@ -50,20 +50,25 @@ class SandboxClient(object):
         :return: the token for accessing a profile
         """
         request_path = self.__endpoint.get_sandbox_path()
-        payload = json.dumps(request_token, cls=SandboxEncoder).encode('utf-8')
+        payload = json.dumps(request_token, cls=SandboxEncoder).encode("utf-8")
 
-        signed_request = (SignedRequestBuilder()
-                          .with_pem_file(self.__crypto)
-                          .with_base_url(self.__sandbox_url)
-                          .with_endpoint(request_path)
-                          .with_payload(payload)
-                          .with_post()
-                          .build())
+        signed_request = (
+            SignedRequestBuilder()
+            .with_pem_file(self.__crypto)
+            .with_base_url(self.__sandbox_url)
+            .with_endpoint(request_path)
+            .with_payload(payload)
+            .with_post()
+            .build()
+        )
 
         response_payload = signed_request.execute()
         if response_payload.status_code < 200 or response_payload.status_code >= 300:
-            raise SandboxException("Error making request to sandbox service: "
-                                   + str(response_payload.status_code), response_payload)
+            raise SandboxException(
+                "Error making request to sandbox service: "
+                + str(response_payload.status_code),
+                response_payload,
+            )
 
         parsed = json.loads(response_payload.text)
         return YotiTokenResponse(parsed["token"])
@@ -121,10 +126,7 @@ class SandboxClientBuilder(object):
         :raises ValueError: one or more of the values is None
         :return: instance of SandboxClient
         """
-        if (
-                self.__sdk_id is None
-                or self.__pem_file is None
-        ):
+        if self.__sdk_id is None or self.__pem_file is None:
             raise ValueError("SDK ID/PEM file must not be None")
 
         return SandboxClient(self.__sdk_id, self.__pem_file, self.__sandbox_url)

@@ -156,5 +156,8 @@ class SandboxAnchorBuilder(object):
         :rtype: SandboxAnchor
         """
         return SandboxAnchor(
-            self.__type, self.__sub_type, self.__value, self.__unix_microsecond_timestamp
+            self.__type,
+            self.__sub_type,
+            self.__value,
+            self.__unix_microsecond_timestamp,
         )

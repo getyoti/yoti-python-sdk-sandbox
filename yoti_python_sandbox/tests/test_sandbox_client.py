@@ -28,10 +28,10 @@ def test_builder_should_throw_error_for_missing_pem_file():
 def test_builder_should_build_client():
     client = (
         SandboxClient.builder()
-            .for_application("some_app")
-            .with_pem_file(PEM_FILE_PATH)
-            .with_sandbox_url("https://localhost")
-            .build()
+        .for_application("some_app")
+        .with_pem_file(PEM_FILE_PATH)
+        .with_sandbox_url("https://localhost")
+        .build()
     )
 
     assert client.sdk_id == "some_app"
@@ -52,14 +52,17 @@ def test_client_should_return_token_from_sandbox(sandbox_client_mock):
     assert response.token == "some-token"
 
 
-@mock.patch("yoti_python_sdk.http.SignedRequest.execute", side_effect=mocked_request_failed_sandbox_token)
+@mock.patch(
+    "yoti_python_sdk.http.SignedRequest.execute",
+    side_effect=mocked_request_failed_sandbox_token,
+)
 def test_client_should_bubble_sandbox_exception(_):
     client = (
         SandboxClient.builder()
-            .for_application("some_app")
-            .with_pem_file(PEM_FILE_PATH)
-            .with_sandbox_url("https://localhost")
-            .build()
+        .for_application("some_app")
+        .with_pem_file(PEM_FILE_PATH)
+        .with_sandbox_url("https://localhost")
+        .build()
     )
 
     token_request = (

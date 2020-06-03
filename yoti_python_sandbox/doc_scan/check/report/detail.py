@@ -7,7 +7,4 @@ class SandboxDetail(YotiSerializable):
         self.value = value
 
     def to_json(self):
-        return {
-            "name": self.name,
-            "value": self.value
-        }
+        return {"name": self.name, "value": self.value}

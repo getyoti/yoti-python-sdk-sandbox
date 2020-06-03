@@ -35,11 +35,11 @@ class SandboxAgeVerification(object):
         """
         return (
             SandboxAttribute.builder()
-                .with_name(config.ATTRIBUTE_DATE_OF_BIRTH)
-                .with_value(self.__date_of_birth)
-                .with_derivation(self.__supported_age_derivation)
-                .with_anchors(self.__anchors)
-                .build()
+            .with_name(config.ATTRIBUTE_DATE_OF_BIRTH)
+            .with_value(self.__date_of_birth)
+            .with_derivation(self.__supported_age_derivation)
+            .with_anchors(self.__anchors)
+            .build()
         )
 
     @staticmethod

@@ -30,18 +30,20 @@ class DocScanSandboxClient(object):
 
         request = (
             SignedRequest.builder()
-                .with_pem_file(self.__key_file)
-                .with_base_url(self.__api_url)
-                .with_endpoint(path)
-                .with_param("sdkId", self.__sdk_id)
-                .with_payload(payload)
-                .with_http_method("PUT")
-                .build()
+            .with_pem_file(self.__key_file)
+            .with_base_url(self.__api_url)
+            .with_endpoint(path)
+            .with_param("sdkId", self.__sdk_id)
+            .with_payload(payload)
+            .with_http_method("PUT")
+            .build()
         )
         response = request.execute()
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise SandboxException("Failed on status code: {}".format(str(response.status_code)), response)
+            raise SandboxException(
+                "Failed on status code: {}".format(str(response.status_code)), response
+            )
 
     def configure_application_response(self, response_config):
         """
@@ -54,14 +56,16 @@ class DocScanSandboxClient(object):
 
         request = (
             SignedRequest.builder()
-                .with_pem_file(self.__key_file)
-                .with_base_url(self.__api_url)
-                .with_endpoint(path)
-                .with_payload(payload)
-                .with_http_method("PUT")
-                .build()
+            .with_pem_file(self.__key_file)
+            .with_base_url(self.__api_url)
+            .with_endpoint(path)
+            .with_payload(payload)
+            .with_http_method("PUT")
+            .build()
         )
         response = request.execute()
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise SandboxException("Failed on status code: {}".format(str(response.status_code)), response)
+            raise SandboxException(
+                "Failed on status code: {}".format(str(response.status_code)), response
+            )

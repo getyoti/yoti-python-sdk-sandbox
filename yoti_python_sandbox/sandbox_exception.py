@@ -1,5 +1,4 @@
 class SandboxException(Exception):
-
     def __init__(self, message, response):
         """
         :param message: the error message

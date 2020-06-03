@@ -6,6 +6,4 @@ class SandboxEndpoint(Endpoint):
         super(SandboxEndpoint, self).__init__(sdk_id)
 
     def get_sandbox_path(self):
-        return "/apps/{sdk_id}/tokens".format(
-            sdk_id=self.sdk_id
-        )
+        return "/apps/{sdk_id}/tokens".format(sdk_id=self.sdk_id)
