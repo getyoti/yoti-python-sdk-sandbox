@@ -1,5 +1,7 @@
 from yoti_python_sdk.utils import YotiSerializable
-from yoti_python_sandbox.doc_scan.document_filter import SandboxDocumentFilter  # noqa: F401
+from yoti_python_sandbox.doc_scan.document_filter import (
+    SandboxDocumentFilter,
+)  # noqa: F401
 
 
 class SandboxDocumentTextDataExtractionTaskResult(YotiSerializable):
@@ -14,9 +16,7 @@ class SandboxDocumentTextDataExtractionTaskResult(YotiSerializable):
         return self.__document_fields
 
     def to_json(self):
-        return {
-            "document_fields": self.document_fields
-        }
+        return {"document_fields": self.document_fields}
 
 
 class SandboxDocumentTextDataExtractionTask(YotiSerializable):

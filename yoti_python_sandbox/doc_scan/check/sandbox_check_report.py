@@ -2,7 +2,6 @@ from yoti_python_sdk.utils import YotiSerializable
 
 
 class SandboxCheckReport(YotiSerializable):
-
     def __init__(self, recommendation, breakdown):
         """
         :param recommendation: the recommendation

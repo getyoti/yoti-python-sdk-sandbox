@@ -7,9 +7,7 @@ class SandboxTaskResults(YotiSerializable):
         self.text_extraction_task = text_extraction_task
 
     def to_json(self):
-        return {
-            constants.ID_DOCUMENT_TEXT_DATA_EXTRACTION: self.text_extraction_task
-        }
+        return {constants.ID_DOCUMENT_TEXT_DATA_EXTRACTION: self.text_extraction_task}
 
 
 class SandboxTaskResultsBuilder(object):
