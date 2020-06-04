@@ -17,7 +17,7 @@ def test_should_accept_task_results():
 def test_should_accept_check_reports():
     check_reports_mock = Mock(spec=SandboxCheckReports)
 
-    result = ResponseConfigBuilder().with_check_report(check_reports_mock).build()
+    result = ResponseConfigBuilder().with_check_reports(check_reports_mock).build()
 
     assert result.check_reports is not None
     assert result.check_reports == check_reports_mock

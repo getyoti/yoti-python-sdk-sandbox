@@ -29,7 +29,7 @@ def doc_scan_example_snippet():
 
     response_config = (
         ResponseConfigBuilder()
-        .with_check_report(
+        .with_check_reports(
             (
                 SandboxCheckReportsBuilder()
                 .with_async_report_delay(10)
