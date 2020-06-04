@@ -1,6 +1,5 @@
 from yoti_python_sdk.utils import YotiSerializable
 
-from .check_reports import SandboxCheckReports
 from .task_results import SandboxTaskResults
 
 
@@ -39,7 +38,7 @@ class ResponseConfig(YotiSerializable):
 class ResponseConfigBuilder(object):
     def __init__(self):
         self.__task_results = None
-        self.__check_report = None
+        self.__check_reports = None
 
     def with_task_results(self, results):
         """
@@ -49,9 +48,9 @@ class ResponseConfigBuilder(object):
         self.__task_results = results
         return self
 
-    def with_check_report(self, report):
-        self.__check_report = report
+    def with_check_reports(self, report):
+        self.__check_reports = report
         return self
 
     def build(self):
-        return ResponseConfig(self.__task_results, self.__check_report)
+        return ResponseConfig(self.__task_results, self.__check_reports)
