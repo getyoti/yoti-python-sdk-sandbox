@@ -23,7 +23,7 @@ setup(
     url="https://github.com/getyoti/yoti-python-sdk-sandbox",
     author="Yoti",
     author_email="websdk@yoti.com",
-    install_requires=["yoti>=2.12.0" "cryptography>=2.8.0",],
+    install_requires=["yoti>=2.12.0", "cryptography>=2.8.0"],
     extras_require={
         "dev": [
             "pre-commit==1.17.0",
