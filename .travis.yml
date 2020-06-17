@@ -30,3 +30,18 @@ jobs:
       python: "3.8"
     - <<: *test
       python: "3.8-dev"
+
+    - stage: Analyze
+      name: Sonarcloud
+      python: "3.8"
+      addons:
+        sonarcloud:
+          organization: "getyoti"
+      install:
+        - pip install -r requirements.txt
+        - pip install -e .[dev]
+      script:
+        - pytest --cov=yoti_python_sandbox yoti_python_sandbox/tests --cov-report=xml:coverage-reports/coverage-new.xml
+        - sed -i 's+<source>.*</source>+<source>/home/travis/build/getyoti/yoti-python-sdk-sandbox/yoti_python_sandbox</source>+g' coverage-reports/coverage-new.xml
+        - sonar-scanner
+      if: type = pull_request OR branch = master
