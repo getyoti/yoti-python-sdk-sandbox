@@ -6,20 +6,14 @@ version = {}
 with open("yoti_python_sandbox/version.py") as fp:
     exec(fp.read(), version)
 
-long_description = (
-    "This package contains the tools you need to quickly "
-    "integrate your Python back-end tests with Yoti sandbox services, "
-    "so you can test integrations with different Yoti services without "
-    "using real data."
-)
-
 setup(
     name="yoti-sandbox",
     version=version["__version__"],
     packages=find_packages(include=["yoti_python_sandbox", "yoti_python_sandbox.*"]),
     license="MIT",
     description="The Yoti Python Sandbox SDK, providing API support for sandbox services",
-    long_description=long_description,
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     url="https://github.com/getyoti/yoti-python-sdk-sandbox",
     author="Yoti",
     author_email="websdk@yoti.com",
