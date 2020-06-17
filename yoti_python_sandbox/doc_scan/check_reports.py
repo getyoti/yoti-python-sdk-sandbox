@@ -1,20 +1,26 @@
 from yoti_python_sdk.doc_scan import constants
 from yoti_python_sdk.utils import YotiSerializable
 
-from .check.sandbox_document_authenticity_check import SandboxDocumentAuthenticityCheck
-from .check.sandbox_document_face_match_check import SandboxDocumentFaceMatchCheck
-from .check.sandbox_document_text_data_check import SandboxDocumentTextDataCheck
-from .check.sandbox_liveness_check import SandboxLivenessCheck
+from .check.sandbox_document_authenticity_check import (  # noqa: F401
+    SandboxDocumentAuthenticityCheck,
+)
+from .check.sandbox_document_face_match_check import (  # noqa: F401
+    SandboxDocumentFaceMatchCheck,
+)
+from .check.sandbox_document_text_data_check import (  # noqa: F401
+    SandboxDocumentTextDataCheck,
+)
+from .check.sandbox_liveness_check import SandboxLivenessCheck  # noqa: F401
 
 
 class SandboxCheckReports(YotiSerializable):
     def __init__(
-            self,
-            document_authenticity_check=None,
-            document_face_match_check=None,
-            document_text_data_check=None,
-            liveness_checks=None,
-            async_report_delay=None
+        self,
+        document_authenticity_check=None,
+        document_face_match_check=None,
+        document_text_data_check=None,
+        liveness_checks=None,
+        async_report_delay=None,
     ):
         if document_authenticity_check is None:
             document_authenticity_check = []
@@ -139,5 +145,10 @@ class SandboxCheckReportsBuilder(object):
         return self
 
     def build(self):
-        return SandboxCheckReports(self.__document_authenticity_checks, self.__document_face_match_checks,
-                                   self.__document_text_data_checks, self.__liveness_checks, self.__async_report_delay)
+        return SandboxCheckReports(
+            self.__document_authenticity_checks,
+            self.__document_face_match_checks,
+            self.__document_text_data_checks,
+            self.__liveness_checks,
+            self.__async_report_delay,
+        )
