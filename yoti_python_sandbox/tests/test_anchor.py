@@ -2,11 +2,6 @@ from datetime import datetime, timezone
 
 from yoti_python_sandbox.anchor import SandboxAnchor
 
-try:
-    from unittest.mock import patch
-except ImportError:
-    from mock import patch
-
 import pytest
 
 
@@ -59,4 +54,4 @@ def test_builder_should_set_timestamp(timestamp, expected_unix_microsecond_equiv
 )
 def test_builder_should_throw_error_for_invalid_timestamp(timestamp):
     with pytest.raises(TypeError):
-        anchor = SandboxAnchor.builder().with_timestamp(timestamp).build()
+        SandboxAnchor.builder().with_timestamp(timestamp).build()

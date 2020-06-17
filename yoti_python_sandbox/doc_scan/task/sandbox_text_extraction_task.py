@@ -1,7 +1,7 @@
 from yoti_python_sdk.utils import YotiSerializable
-from yoti_python_sandbox.doc_scan.document_filter import (
+from yoti_python_sandbox.doc_scan.document_filter import (  # noqa: F401
     SandboxDocumentFilter,
-)  # noqa: F401
+)
 
 
 class SandboxDocumentTextDataExtractionTaskResult(YotiSerializable):

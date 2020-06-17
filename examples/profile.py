@@ -53,3 +53,5 @@ def profile_example_snippet():
 
     # Use the share_token to get Activity Details like normal
     share_token = token_response.token
+
+    assert isinstance(share_token, str)
