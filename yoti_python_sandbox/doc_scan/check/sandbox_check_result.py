@@ -1,6 +1,8 @@
 from yoti_python_sdk.utils import YotiSerializable
 
-from yoti_python_sandbox.doc_scan.check.sandbox_check_report import SandboxCheckReport
+from yoti_python_sandbox.doc_scan.check.sandbox_check_report import (  # noqa: F401
+    SandboxCheckReport,
+)
 
 
 class SandboxCheckResult(YotiSerializable):

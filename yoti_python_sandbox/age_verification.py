@@ -1,6 +1,6 @@
 from yoti_python_sdk import config
 
-from .anchor import SandboxAnchor
+from .anchor import SandboxAnchor  # noqa: F401
 from .attribute import SandboxAttribute
 
 
