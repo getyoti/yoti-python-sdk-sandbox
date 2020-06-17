@@ -4,7 +4,7 @@ from yoti_python_sdk.http import SignedRequest
 from yoti_python_sdk.utils import YotiEncoder
 
 from yoti_python_sandbox.doc_scan import DEFAULT_DOC_SCAN_SANDBOX_URL
-from .response_config import ResponseConfig
+from .response_config import ResponseConfig  # noqa: F401
 from ..sandbox_exception import SandboxException
 
 
