@@ -1,5 +1,11 @@
 # Yoti Python Sandbox SDK
 
+[![Build Status](https://travis-ci.com/getyoti/yoti-python-sdk-sandbox.svg?branch=master)](https://travis-ci.com/getyoti/yoti-python-sdk-sandbox)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=getyoti%3Apython-sandbox&metric=coverage)](https://sonarcloud.io/dashboard?id=getyoti%3Apython-sandbox)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=getyoti%3Apython-sandbox&metric=bugs)](https://sonarcloud.io/dashboard?id=getyoti%3Apython-sandbox)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=getyoti%3Apython-sandbox&metric=code_smells)](https://sonarcloud.io/dashboard?id=getyoti%3Apython-sandbox)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=getyoti%3Apython-sandbox&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=getyoti%3Apython-sandbox)
+
 Welcome to the Yoti Python Sandbox SDK. This repo contains the tools you need to test your Python back-end integration.
 
 ## Requirements
