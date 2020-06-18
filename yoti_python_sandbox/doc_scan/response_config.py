@@ -1,6 +1,6 @@
 from yoti_python_sdk.utils import YotiSerializable
 
-from .task_results import SandboxTaskResults
+from .task_results import SandboxTaskResults  # noqa: F401
 
 
 class ResponseConfig(YotiSerializable):
