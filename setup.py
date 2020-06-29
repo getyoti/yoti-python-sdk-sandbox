@@ -23,7 +23,7 @@ setup(
             "pre-commit==2.5.1",
             "pytest>=4.6.0",
             "pytest-cov>=2.7.1",
-            "pylint==1.9.4",
+            "pylint==2.5.3",
             "pylint-exit>=1.1.0",
             "python-coveralls==2.9.3",
             "coverage==4.5.4",
