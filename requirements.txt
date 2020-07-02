@@ -8,7 +8,7 @@ asn1==2.2.0               # via yoti
 certifi==2019.11.28       # via requests
 cffi==1.14.0              # via cryptography
 chardet==3.0.4            # via requests
-cryptography==2.8         # via -r requirements.in, pyopenssl, yoti
+cryptography==2.9.2       # via -r requirements.in, pyopenssl, yoti
 deprecated==1.2.10        # via yoti
 future==0.18.2            # via yoti
 idna==2.9                 # via requests
