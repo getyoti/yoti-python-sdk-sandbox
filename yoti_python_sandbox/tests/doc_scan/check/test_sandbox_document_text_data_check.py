@@ -55,6 +55,16 @@ def test_should_accept_with_breakdowns():
     assert check.result.report.breakdown == breakdowns_mock
 
 
+def test_should_allow_document_fields_set_with_dictionary():
+    check = (
+        SandboxDocumentTextDataCheckBuilder()
+        .with_document_fields({"someKey": "someValue"})
+        .build()
+    )
+
+    assert check.result.document_fields.get("someKey") == "someValue"
+
+
 def test_should_exclude_document_fields_when_not_set():
     check = SandboxDocumentTextDataCheckBuilder().build()
 
