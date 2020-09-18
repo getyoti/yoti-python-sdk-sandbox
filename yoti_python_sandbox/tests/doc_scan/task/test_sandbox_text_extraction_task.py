@@ -39,11 +39,27 @@ def test_should_allow_multiple_document_fields():
     assert task.result.document_fields.get("someOtherKey") == "someOtherValue"
 
 
-def test_should_exclude_document_fields_when_not_set():
+def test_json_should_include_document_fields_when_set():
+    task = (
+        SandboxDocumentTextDataExtractionTaskBuilder()
+        .with_document_field("someKey", "someValue")
+        .build()
+    )
+
+    json = task.to_json()
+
+    assert (
+        json.get("result").to_json().get("document_fields").get("someKey")
+        == "someValue"
+    )
+
+
+def test_json_should_exclude_document_fields_when_not_set():
     task = SandboxDocumentTextDataExtractionTaskBuilder().build()
 
-    assert task.result.document_fields is None
-    assert task.result.to_json() == {}
+    json = task.to_json()
+
+    assert json.get("result").to_json().get("document_fields") is None
 
 
 def test_should_accept_document_filter():
@@ -56,3 +72,17 @@ def test_should_accept_document_filter():
     )
 
     assert task.document_filter == document_filter_mock
+
+
+def test_json_includes_document_filter():
+    document_filter_mock = Mock(spec=SandboxDocumentFilter)
+
+    task = (
+        SandboxDocumentTextDataExtractionTaskBuilder()
+        .with_document_filter(document_filter_mock)
+        .build()
+    )
+
+    json = task.to_json()
+
+    assert json.get("document_filter") == document_filter_mock
