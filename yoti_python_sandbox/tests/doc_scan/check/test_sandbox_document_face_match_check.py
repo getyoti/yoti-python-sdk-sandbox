@@ -26,16 +26,58 @@ def test_should_build_sandbox_document_authenticity_check():
 
 
 def test_should_accept_document_filter():
-    recommendation_mock = Mock(spec=SandboxRecommendation)
-    breakdown_mock = Mock(spec=SandboxBreakdown)
     document_filter_mock = Mock(spec=SandboxDocumentFilter)
 
     check = (
         SandboxDocumentFaceMatchCheckBuilder()
-        .with_recommendation(recommendation_mock)
-        .with_breakdown(breakdown_mock)
         .with_document_filter(document_filter_mock)
         .build()
     )
 
     assert check.document_filter == document_filter_mock
+
+
+def test_json_should_include_document_filter():
+    document_filter_mock = Mock(spec=SandboxDocumentFilter)
+
+    check = (
+        SandboxDocumentFaceMatchCheckBuilder()
+        .with_document_filter(document_filter_mock)
+        .build()
+    )
+
+    json = check.to_json()
+
+    assert json.get("document_filter") == document_filter_mock
+
+
+def test_json_includes_breakdowns():
+    breakdowns_mock = [Mock(spec=SandboxBreakdown), Mock(spec=SandboxBreakdown)]
+
+    check = (
+        SandboxDocumentFaceMatchCheckBuilder().with_breakdowns(breakdowns_mock).build()
+    )
+
+    json = check.to_json()
+
+    assert (
+        json.get("result").to_json().get("report").to_json().get("breakdown")
+        == breakdowns_mock
+    )
+
+
+def test_json_includes_recommendation():
+    recommendation_mock = Mock(spec=SandboxRecommendation)
+
+    check = (
+        SandboxDocumentFaceMatchCheckBuilder()
+        .with_recommendation(recommendation_mock)
+        .build()
+    )
+
+    json = check.to_json()
+
+    assert (
+        json.get("result").to_json().get("report").to_json().get("recommendation")
+        == recommendation_mock
+    )
