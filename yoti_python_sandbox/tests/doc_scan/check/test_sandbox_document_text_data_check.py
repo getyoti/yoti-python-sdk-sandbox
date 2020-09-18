@@ -53,3 +53,9 @@ def test_should_accept_with_breakdowns():
     )
 
     assert result.result.report.breakdown == breakdowns_mock
+
+
+def test_should_exclude_document_fields_when_not_set():
+    check = SandboxDocumentTextDataCheckBuilder().build()
+
+    assert check.result.document_fields is None
