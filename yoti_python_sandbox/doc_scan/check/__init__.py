@@ -11,3 +11,6 @@ from .sandbox_zoom_liveness_check import SandboxZoomLivenessCheckBuilder  # noqa
 from .report.recommendation import SandboxRecommendationBuilder  # noqa: F401
 from .report.breakdown import SandboxBreakdownBuilder  # noqa: F401
 from .report.detail import SandboxDetail  # noqa: F401
+from .sandbox_id_document_comparison_check import (  # noqa: F401
+    SandboxIdDocumentComparisonCheckBuilder,
+)
