@@ -1,4 +1,3 @@
-from yoti_python_sdk.doc_scan import constants
 from yoti_python_sdk.utils import YotiSerializable
 
 from .check.sandbox_document_authenticity_check import (  # noqa: F401
@@ -21,6 +20,7 @@ class SandboxCheckReports(YotiSerializable):
         document_text_data_check=None,
         liveness_checks=None,
         async_report_delay=None,
+        id_document_comparison_checks=None,
     ):
         if document_authenticity_check is None:
             document_authenticity_check = []
@@ -34,11 +34,15 @@ class SandboxCheckReports(YotiSerializable):
         if liveness_checks is None:
             liveness_checks = []
 
+        if id_document_comparison_checks is None:
+            id_document_comparison_checks = []
+
         self.__document_authenticity_check = document_authenticity_check
         self.__document_face_match_check = document_face_match_check
         self.__document_text_data_check = document_text_data_check
         self.__liveness_checks = liveness_checks
         self.__async_report_delay = async_report_delay
+        self.__id_document_comparison_checks = id_document_comparison_checks
 
     @property
     def document_authenticity_checks(self):
@@ -60,12 +64,17 @@ class SandboxCheckReports(YotiSerializable):
     def async_report_delay(self):
         return self.__async_report_delay
 
+    @property
+    def id_document_comparison_checks(self):
+        return self.__id_document_comparison_checks
+
     def to_json(self):
         return {
-            constants.ID_DOCUMENT_AUTHENTICITY: self.__document_authenticity_check,
-            constants.ID_DOCUMENT_TEXT_DATA_CHECK: self.__document_text_data_check,
-            constants.ID_DOCUMENT_FACE_MATCH: self.__document_face_match_check,
-            constants.LIVENESS: self.__liveness_checks,
+            "ID_DOCUMENT_AUTHENTICITY": self.__document_authenticity_check,
+            "ID_DOCUMENT_TEXT_DATA_CHECK": self.__document_text_data_check,
+            "ID_DOCUMENT_FACE_MATCH": self.__document_face_match_check,
+            "LIVENESS": self.__liveness_checks,
+            "ID_DOCUMENT_COMPARISON": self.__id_document_comparison_checks,
             "async_report_delay": self.__async_report_delay,
         }
 
@@ -77,6 +86,7 @@ class SandboxCheckReportsBuilder(object):
         self.__document_text_data_checks = []
         self.__liveness_checks = []
         self.__async_report_delay = None
+        self.__id_document_comparison_check = []
 
     def with_document_authenticity_check(self, document_authenticity_check):
         """
@@ -144,6 +154,18 @@ class SandboxCheckReportsBuilder(object):
         self.__async_report_delay = async_report_delay
         return self
 
+    def with_id_document_comparison_check(self, id_document_comparison_check):
+        """
+        Add an ID document comparison check expectation
+
+        :param id_document_comparison_check: the ID document comparison check
+        :type id_document_comparison_check: SandboxIdDocumentComparisonCheck
+        :return: the builder
+        :rtype: SandboxCheckReportsBuilder
+        """
+        self.__id_document_comparison_check.append(id_document_comparison_check)
+        return self
+
     def build(self):
         return SandboxCheckReports(
             self.__document_authenticity_checks,
@@ -151,4 +173,5 @@ class SandboxCheckReportsBuilder(object):
             self.__document_text_data_checks,
             self.__liveness_checks,
             self.__async_report_delay,
+            self.__id_document_comparison_check,
         )
