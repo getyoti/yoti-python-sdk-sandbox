@@ -1,6 +1,9 @@
 from mock import Mock
 
 from yoti_python_sandbox.doc_scan.check import SandboxIdDocumentComparisonCheckBuilder
+from yoti_python_sandbox.doc_scan.check.sandbox_id_document_comparison_check import (
+    SandboxIdDocumentComparisonCheck,
+)
 from yoti_python_sandbox.doc_scan.check.report.breakdown import SandboxBreakdown
 from yoti_python_sandbox.doc_scan.check.report.recommendation import (
     SandboxRecommendation,
@@ -23,6 +26,12 @@ def test_should_build_sandbox_id_document_comparison_check():
     assert check.result.report.recommendation == recommendation_mock
     assert len(check.result.report.breakdown) == 1
     assert check.result.report.breakdown[0] == breakdown_mock
+
+
+def test_builder_method_should_return_builder():
+    check = SandboxIdDocumentComparisonCheck.builder().build()
+
+    assert check.result.report is not None
 
 
 def test_should_accept_document_filter():
