@@ -27,7 +27,7 @@ __version__ = main_ns["__version__"]
 
 __all__ = [
     __version__,
-    SandboxClientBuilder,
-    SandboxAgeVerificationBuilder,
-    YotiTokenRequestBuilder,
+    "SandboxClientBuilder",
+    "SandboxAgeVerificationBuilder",
+    "YotiTokenRequestBuilder",
 ]
