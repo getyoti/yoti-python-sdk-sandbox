@@ -6,6 +6,9 @@ from yoti_python_sandbox.doc_scan.document_filter import SandboxDocumentFilter
 from yoti_python_sandbox.doc_scan.task import (
     SandboxDocumentTextDataExtractionTaskBuilder,
 )
+from yoti_python_sandbox.doc_scan.task.sandbox_text_extraction_recommendation import (
+    SandboxTextDataExtractionRecommendation,
+)
 
 
 def test_should_allow_single_key_value_document_field():
@@ -111,3 +114,51 @@ def test_json_includes_document_filter():
     json = task.to_json()
 
     assert json.get("document_filter") == document_filter_mock
+
+
+def test_json_should_not_include_recommendation_when_not_set():
+    task = SandboxDocumentTextDataExtractionTaskBuilder().build()
+
+    json = task.to_json()
+    json_result = json.get("result").to_json()
+
+    assert json_result.get("recommendation") is None
+
+
+def test_json_should_include_recommendation_when_set():
+    recommendation_mock = Mock(spec=SandboxTextDataExtractionRecommendation)
+
+    task = (
+        SandboxDocumentTextDataExtractionTaskBuilder()
+        .with_recommendation(recommendation_mock)
+        .build()
+    )
+
+    json = task.to_json()
+    json_result = json.get("result").to_json()
+
+    assert json_result.get("recommendation") == recommendation_mock
+
+
+def test_json_should_not_include_detected_country_when_not_set():
+    task = SandboxDocumentTextDataExtractionTaskBuilder().build()
+
+    json = task.to_json()
+    json_result = json.get("result").to_json()
+
+    assert json_result.get("detected_country") is None
+
+
+def test_json_should_include_detected_country_when_set():
+    some_country = "some-country"
+
+    task = (
+        SandboxDocumentTextDataExtractionTaskBuilder()
+        .with_detected_country(some_country)
+        .build()
+    )
+
+    json = task.to_json()
+    json_result = json.get("result").to_json()
+
+    assert json_result.get("detected_country") == some_country
