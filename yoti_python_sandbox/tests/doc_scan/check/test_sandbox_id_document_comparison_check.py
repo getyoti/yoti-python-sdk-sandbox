@@ -1,6 +1,9 @@
 from mock import Mock
 
-from yoti_python_sandbox.doc_scan.check import SandboxDocumentFaceMatchCheckBuilder
+from yoti_python_sandbox.doc_scan.check import SandboxIdDocumentComparisonCheckBuilder
+from yoti_python_sandbox.doc_scan.check.sandbox_id_document_comparison_check import (
+    SandboxIdDocumentComparisonCheck,
+)
 from yoti_python_sandbox.doc_scan.check.report.breakdown import SandboxBreakdown
 from yoti_python_sandbox.doc_scan.check.report.recommendation import (
     SandboxRecommendation,
@@ -8,12 +11,12 @@ from yoti_python_sandbox.doc_scan.check.report.recommendation import (
 from yoti_python_sandbox.doc_scan.document_filter import SandboxDocumentFilter
 
 
-def test_should_build_sandbox_document_authenticity_check():
+def test_should_build_sandbox_id_document_comparison_check():
     recommendation_mock = Mock(spec=SandboxRecommendation)
     breakdown_mock = Mock(spec=SandboxBreakdown)
 
     check = (
-        SandboxDocumentFaceMatchCheckBuilder()
+        SandboxIdDocumentComparisonCheckBuilder()
         .with_recommendation(recommendation_mock)
         .with_breakdown(breakdown_mock)
         .build()
@@ -25,37 +28,45 @@ def test_should_build_sandbox_document_authenticity_check():
     assert check.result.report.breakdown[0] == breakdown_mock
 
 
+def test_builder_method_should_return_builder():
+    check = SandboxIdDocumentComparisonCheck.builder().build()
+
+    assert check.result.report is not None
+
+
 def test_should_accept_document_filter():
     document_filter_mock = Mock(spec=SandboxDocumentFilter)
 
     check = (
-        SandboxDocumentFaceMatchCheckBuilder()
-        .with_document_filter(document_filter_mock)
+        SandboxIdDocumentComparisonCheckBuilder()
+        .with_secondary_document_filter(document_filter_mock)
         .build()
     )
 
-    assert check.document_filter == document_filter_mock
+    assert check.secondary_document_filter == document_filter_mock
 
 
 def test_json_should_include_document_filter():
     document_filter_mock = Mock(spec=SandboxDocumentFilter)
 
     check = (
-        SandboxDocumentFaceMatchCheckBuilder()
-        .with_document_filter(document_filter_mock)
+        SandboxIdDocumentComparisonCheckBuilder()
+        .with_secondary_document_filter(document_filter_mock)
         .build()
     )
 
     json = check.to_json()
 
-    assert json.get("document_filter") == document_filter_mock
+    assert json.get("secondary_document_filter") == document_filter_mock
 
 
 def test_json_includes_breakdowns():
     breakdowns_mock = [Mock(spec=SandboxBreakdown), Mock(spec=SandboxBreakdown)]
 
     check = (
-        SandboxDocumentFaceMatchCheckBuilder().with_breakdowns(breakdowns_mock).build()
+        SandboxIdDocumentComparisonCheckBuilder()
+        .with_breakdowns(breakdowns_mock)
+        .build()
     )
 
     json = check.to_json()
@@ -70,7 +81,7 @@ def test_json_includes_recommendation():
     recommendation_mock = Mock(spec=SandboxRecommendation)
 
     check = (
-        SandboxDocumentFaceMatchCheckBuilder()
+        SandboxIdDocumentComparisonCheckBuilder()
         .with_recommendation(recommendation_mock)
         .build()
     )

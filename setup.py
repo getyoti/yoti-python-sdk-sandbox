@@ -20,15 +20,15 @@ setup(
     install_requires=["yoti>=2.12.0", "cryptography>=2.8.0"],
     extras_require={
         "dev": [
-            "pre-commit==2.5.1",
+            "pre-commit==2.7.1",
             "pytest>=4.6.0",
             "pytest-cov>=2.7.1",
-            "pylint==1.9.4",
+            "pylint==2.6.0",
             "pylint-exit>=1.1.0",
             "python-coveralls==2.9.3",
-            "coverage==4.5.4",
+            "coverage==5.3",
             "mock==4.0.2",
-            "virtualenv==15.2",
+            "virtualenv==20.0.33",
         ],
     },
     classifiers=[
