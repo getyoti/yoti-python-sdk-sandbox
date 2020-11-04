@@ -7,6 +7,9 @@ from .sandbox_document_face_match_check import (  # noqa: F401
 from .sandbox_document_text_data_check import (  # noqa: F401
     SandboxDocumentTextDataCheckBuilder,
 )
+from .sandbox_supplementary_document_text_data_check import (  # noqa: F401
+    SandboxSupplementaryDocumentTextDataCheckBuilder,
+)
 from .sandbox_zoom_liveness_check import SandboxZoomLivenessCheckBuilder  # noqa: F401
 from .report.recommendation import SandboxRecommendationBuilder  # noqa: F401
 from .report.breakdown import SandboxBreakdownBuilder  # noqa: F401
