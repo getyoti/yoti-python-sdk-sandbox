@@ -1,10 +1,8 @@
-import base64
-
 from mock import Mock
 
 from yoti_python_sandbox.doc_scan.document_filter import SandboxDocumentFilter
 from yoti_python_sandbox.doc_scan.task import (
-    SandboxDocumentTextDataExtractionTaskBuilder,
+    SandboxSupplementaryDocumentTextDataExtractionTaskBuilder,
 )
 from yoti_python_sandbox.doc_scan.task.sandbox_text_extraction_recommendation import (
     SandboxTextDataExtractionRecommendation,
@@ -13,7 +11,7 @@ from yoti_python_sandbox.doc_scan.task.sandbox_text_extraction_recommendation im
 
 def test_should_allow_single_key_value_document_field():
     task = (
-        SandboxDocumentTextDataExtractionTaskBuilder()
+        SandboxSupplementaryDocumentTextDataExtractionTaskBuilder()
         .with_document_field("someKey", "someValue")
         .build()
     )
@@ -24,7 +22,7 @@ def test_should_allow_single_key_value_document_field():
 
 def test_should_allow_document_fields_set_with_dictionary():
     task = (
-        SandboxDocumentTextDataExtractionTaskBuilder()
+        SandboxSupplementaryDocumentTextDataExtractionTaskBuilder()
         .with_document_fields({"someKey": "someValue"})
         .build()
     )
@@ -34,7 +32,7 @@ def test_should_allow_document_fields_set_with_dictionary():
 
 def test_should_allow_multiple_document_fields():
     task = (
-        SandboxDocumentTextDataExtractionTaskBuilder()
+        SandboxSupplementaryDocumentTextDataExtractionTaskBuilder()
         .with_document_field("someKey", "someValue")
         .with_document_field("someOtherKey", "someOtherValue")
         .build()
@@ -46,7 +44,7 @@ def test_should_allow_multiple_document_fields():
 
 def test_json_should_include_document_fields_when_set():
     task = (
-        SandboxDocumentTextDataExtractionTaskBuilder()
+        SandboxSupplementaryDocumentTextDataExtractionTaskBuilder()
         .with_document_field("someKey", "someValue")
         .build()
     )
@@ -60,41 +58,18 @@ def test_json_should_include_document_fields_when_set():
 
 
 def test_json_should_exclude_document_fields_when_not_set():
-    task = SandboxDocumentTextDataExtractionTaskBuilder().build()
+    task = SandboxSupplementaryDocumentTextDataExtractionTaskBuilder().build()
 
     json = task.to_json()
 
     assert json.get("result").to_json().get("document_fields") is None
 
 
-def test_json_should_include_document_id_photo_when_set():
-    task = (
-        SandboxDocumentTextDataExtractionTaskBuilder()
-        .with_document_id_photo("someContentType", b"someData")
-        .build()
-    )
-
-    json = task.to_json()
-    json_result = json.get("result").to_json()
-    json_document_id_photo = json_result.get("document_id_photo").to_json()
-
-    assert json_document_id_photo.get("content_type") == "someContentType"
-    assert base64.b64decode(json_document_id_photo.get("data")) == b"someData"
-
-
-def test_json_should_exclude_document_id_photo_when_not_set():
-    task = SandboxDocumentTextDataExtractionTaskBuilder().build()
-
-    json = task.to_json()
-
-    assert json.get("result").to_json().get("document_id_photo") is None
-
-
 def test_should_accept_document_filter():
     document_filter_mock = Mock(spec=SandboxDocumentFilter)
 
     task = (
-        SandboxDocumentTextDataExtractionTaskBuilder()
+        SandboxSupplementaryDocumentTextDataExtractionTaskBuilder()
         .with_document_filter(document_filter_mock)
         .build()
     )
@@ -106,7 +81,7 @@ def test_json_includes_document_filter():
     document_filter_mock = Mock(spec=SandboxDocumentFilter)
 
     task = (
-        SandboxDocumentTextDataExtractionTaskBuilder()
+        SandboxSupplementaryDocumentTextDataExtractionTaskBuilder()
         .with_document_filter(document_filter_mock)
         .build()
     )
@@ -117,7 +92,7 @@ def test_json_includes_document_filter():
 
 
 def test_json_should_not_include_recommendation_when_not_set():
-    task = SandboxDocumentTextDataExtractionTaskBuilder().build()
+    task = SandboxSupplementaryDocumentTextDataExtractionTaskBuilder().build()
 
     json = task.to_json()
     json_result = json.get("result").to_json()
@@ -129,7 +104,7 @@ def test_json_should_include_recommendation_when_set():
     recommendation_mock = Mock(spec=SandboxTextDataExtractionRecommendation)
 
     task = (
-        SandboxDocumentTextDataExtractionTaskBuilder()
+        SandboxSupplementaryDocumentTextDataExtractionTaskBuilder()
         .with_recommendation(recommendation_mock)
         .build()
     )
@@ -141,7 +116,7 @@ def test_json_should_include_recommendation_when_set():
 
 
 def test_json_should_not_include_detected_country_when_not_set():
-    task = SandboxDocumentTextDataExtractionTaskBuilder().build()
+    task = SandboxSupplementaryDocumentTextDataExtractionTaskBuilder().build()
 
     json = task.to_json()
     json_result = json.get("result").to_json()
@@ -153,7 +128,7 @@ def test_json_should_include_detected_country_when_set():
     some_country = "some-country"
 
     task = (
-        SandboxDocumentTextDataExtractionTaskBuilder()
+        SandboxSupplementaryDocumentTextDataExtractionTaskBuilder()
         .with_detected_country(some_country)
         .build()
     )

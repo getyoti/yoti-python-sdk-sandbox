@@ -5,7 +5,7 @@ from yoti_python_sdk.utils import YotiEncoder
 
 from yoti_python_sandbox.doc_scan import DEFAULT_DOC_SCAN_SANDBOX_URL
 from .response_config import ResponseConfig  # noqa: F401
-from ..sandbox_exception import SandboxException
+from .exception import DocScanSandboxException
 
 
 class DocScanSandboxClient(object):
@@ -41,7 +41,7 @@ class DocScanSandboxClient(object):
         response = request.execute()
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise SandboxException(
+            raise DocScanSandboxException(
                 "Failed on status code: {}".format(str(response.status_code)), response
             )
 
@@ -66,6 +66,6 @@ class DocScanSandboxClient(object):
         response = request.execute()
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise SandboxException(
+            raise DocScanSandboxException(
                 "Failed on status code: {}".format(str(response.status_code)), response
             )
