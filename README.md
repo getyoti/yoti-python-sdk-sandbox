@@ -1,6 +1,6 @@
 # Yoti Python Sandbox SDK
 
-[![Build Status](https://github.com/getyoti/yoti-java-sdk/workflows/Unit%20Test/badge.svg?branch=master)](https://github.com/getyoti/yoti-java-sdk/actions)
+[![Build Status](https://github.com/getyoti/yoti-python-sdk-sandbox/workflows/Unit%20Test/badge.svg?branch=master)](https://github.com/getyoti/yoti-python-sdk-sandbox/actions)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=getyoti%3Apython-sandbox&metric=coverage)](https://sonarcloud.io/dashboard?id=getyoti%3Apython-sandbox)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=getyoti%3Apython-sandbox&metric=bugs)](https://sonarcloud.io/dashboard?id=getyoti%3Apython-sandbox)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=getyoti%3Apython-sandbox&metric=code_smells)](https://sonarcloud.io/dashboard?id=getyoti%3Apython-sandbox)
