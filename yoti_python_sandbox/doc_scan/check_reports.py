@@ -22,6 +22,7 @@ class SandboxCheckReports(YotiSerializable):
         async_report_delay=None,
         id_document_comparison_checks=None,
         supplementary_document_text_data_checks=None,
+        third_party_identity_checks=None,
     ):
         if document_authenticity_check is None:
             document_authenticity_check = []
@@ -41,11 +42,15 @@ class SandboxCheckReports(YotiSerializable):
         if supplementary_document_text_data_checks is None:
             supplementary_document_text_data_checks = []
 
+        if third_party_identity_checks is None:
+            third_party_identity_checks = []
+
         self.__document_authenticity_check = document_authenticity_check
         self.__document_face_match_check = document_face_match_check
         self.__document_text_data_check = document_text_data_check
         self.__liveness_checks = liveness_checks
         self.__async_report_delay = async_report_delay
+        self.__third_party_identity_checks = third_party_identity_checks
         self.__id_document_comparison_checks = id_document_comparison_checks
         self.__supplementary_document_text_data_checks = (
             supplementary_document_text_data_checks
@@ -79,6 +84,10 @@ class SandboxCheckReports(YotiSerializable):
     def supplementary_document_text_data_checks(self):
         return self.__supplementary_document_text_data_checks
 
+    @property
+    def third_party_identity_checks(self):
+        return self.__third_party_identity_checks
+
     def to_json(self):
         return {
             "ID_DOCUMENT_AUTHENTICITY": self.__document_authenticity_check,
@@ -87,6 +96,7 @@ class SandboxCheckReports(YotiSerializable):
             "LIVENESS": self.__liveness_checks,
             "ID_DOCUMENT_COMPARISON": self.__id_document_comparison_checks,
             "SUPPLEMENTARY_DOCUMENT_TEXT_DATA_CHECK": self.__supplementary_document_text_data_checks,
+            "THIRD_PARTY_IDENTITY": self.__third_party_identity_checks,
             "async_report_delay": self.__async_report_delay,
         }
 
@@ -100,6 +110,7 @@ class SandboxCheckReportsBuilder(object):
         self.__async_report_delay = None
         self.__id_document_comparison_check = []
         self.__supplementary_document_text_data_checks = []
+        self.__third_party_identity_checks = []
 
     def with_document_authenticity_check(self, document_authenticity_check):
         """
@@ -195,6 +206,20 @@ class SandboxCheckReportsBuilder(object):
         )
         return self
 
+    def with_third_party_identity_check(self, third_party_identity_check):
+        """
+        Add a third party identity check expectation
+
+        :param third_party_identity_check: the third party identity check
+        :type third_party_identity_check: SandboxThirdPartyIdentityCheck
+        :return: the builder
+        :rtype: SandboxCheckReportsBuilder
+        """
+        self.__third_party_identity_checks.append(
+            third_party_identity_check
+        )
+        return self
+
     def build(self):
         return SandboxCheckReports(
             self.__document_authenticity_checks,
@@ -204,4 +229,5 @@ class SandboxCheckReportsBuilder(object):
             self.__async_report_delay,
             self.__id_document_comparison_check,
             self.__supplementary_document_text_data_checks,
+            self.__third_party_identity_checks,
         )
