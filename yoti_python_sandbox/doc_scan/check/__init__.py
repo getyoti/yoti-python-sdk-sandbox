@@ -10,6 +10,9 @@ from .sandbox_document_text_data_check import (  # noqa: F401
 from .sandbox_supplementary_document_text_data_check import (  # noqa: F401
     SandboxSupplementaryDocumentTextDataCheckBuilder,
 )
+from .sandbox_third_party_identity_check import (  # noqa: F401
+    SandboxThirdPartyIdentityCheckBuilder,
+)
 from .sandbox_zoom_liveness_check import SandboxZoomLivenessCheckBuilder  # noqa: F401
 from .report.recommendation import SandboxRecommendationBuilder  # noqa: F401
 from .report.breakdown import SandboxBreakdownBuilder  # noqa: F401
