@@ -13,7 +13,7 @@ Welcome to the Yoti Python Sandbox SDK. This repo contains the tools you need to
 ### Python version
 Please refer to [Github Actions](https://github.com/getyoti/yoti-python-sdk-sandbox/actions?query=workflow%3ATests) to see all compatible Python versions.
 
-Please email [sdksupport@yoti.com](mailto:sdksupport@yoti.com) if you require a version which is not listed here.
+Please email [clientsupport@yoti.com](mailto:clientsupport@yoti.com) if you require a version which is not listed here.
 
 ## Installing the Sandbox
 
