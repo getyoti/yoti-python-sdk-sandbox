@@ -41,3 +41,4 @@ In the examples folder there are snippets for:
 ## Additional Information
 
 For more information about the Yoti Sandbox, please visit https://developers.yoti.com/yoti/sandbox-app
+
