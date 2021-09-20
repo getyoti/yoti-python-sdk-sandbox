@@ -1,5 +1,5 @@
 name: Sonar Scan
-on: [push, pull_request_target]
+on: []
 
 jobs:
   sonar:

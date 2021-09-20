@@ -22,6 +22,7 @@ class SandboxCheckReports(YotiSerializable):
         async_report_delay=None,
         id_document_comparison_checks=None,
         supplementary_document_text_data_checks=None,
+        third_party_check=None,
     ):
         if document_authenticity_check is None:
             document_authenticity_check = []
@@ -41,6 +42,7 @@ class SandboxCheckReports(YotiSerializable):
         if supplementary_document_text_data_checks is None:
             supplementary_document_text_data_checks = []
 
+        self.__third_party_check = third_party_check
         self.__document_authenticity_check = document_authenticity_check
         self.__document_face_match_check = document_face_match_check
         self.__document_text_data_check = document_text_data_check
@@ -79,8 +81,13 @@ class SandboxCheckReports(YotiSerializable):
     def supplementary_document_text_data_checks(self):
         return self.__supplementary_document_text_data_checks
 
+    @property
+    def third_party_check(self):
+        return self.__third_party_check
+
     def to_json(self):
         return {
+            "THIRD_PARTY_IDENTITY": self.__third_party_check,
             "ID_DOCUMENT_AUTHENTICITY": self.__document_authenticity_check,
             "ID_DOCUMENT_TEXT_DATA_CHECK": self.__document_text_data_check,
             "ID_DOCUMENT_FACE_MATCH": self.__document_face_match_check,
@@ -97,6 +104,7 @@ class SandboxCheckReportsBuilder(object):
         self.__document_face_match_checks = []
         self.__document_text_data_checks = []
         self.__liveness_checks = []
+        self.__third_party_check = None
         self.__async_report_delay = None
         self.__id_document_comparison_check = []
         self.__supplementary_document_text_data_checks = []
@@ -195,6 +203,20 @@ class SandboxCheckReportsBuilder(object):
         )
         return self
 
+    def with_third_party_check(self, third_party_check):
+        """
+        Add a third party check
+
+        :param third_party_check: the third party check
+        :type third_party_check: SandboxThirdPartyCheck
+        :return: the builder
+        :rtype: SandboxCheckReportsBuilder
+        """
+
+        self.__third_party_check = third_party_check
+
+        return self
+
     def build(self):
         return SandboxCheckReports(
             self.__document_authenticity_checks,
@@ -204,4 +226,5 @@ class SandboxCheckReportsBuilder(object):
             self.__async_report_delay,
             self.__id_document_comparison_check,
             self.__supplementary_document_text_data_checks,
+            self.__third_party_check,
         )
