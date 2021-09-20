@@ -1,7 +1,6 @@
 from mock import Mock
 
 from yoti_python_sandbox.doc_scan import SandboxCheckReportsBuilder
-from yoti_python_sandbox.doc_scan.check_reports import SandboxCheckReports
 from yoti_python_sandbox.doc_scan.check.sandbox_document_authenticity_check import (
     SandboxDocumentAuthenticityCheck,
 )
@@ -11,15 +10,19 @@ from yoti_python_sandbox.doc_scan.check.sandbox_document_face_match_check import
 from yoti_python_sandbox.doc_scan.check.sandbox_document_text_data_check import (
     SandboxDocumentTextDataCheck,
 )
-from yoti_python_sandbox.doc_scan.check.sandbox_liveness_check import (
-    SandboxLivenessCheck,
-)
 from yoti_python_sandbox.doc_scan.check.sandbox_id_document_comparison_check import (
     SandboxIdDocumentComparisonCheck,
+)
+from yoti_python_sandbox.doc_scan.check.sandbox_liveness_check import (
+    SandboxLivenessCheck,
 )
 from yoti_python_sandbox.doc_scan.check.sandbox_supplementary_document_text_data_check import (
     SandboxSupplementaryDocumentTextDataCheck,
 )
+from yoti_python_sandbox.doc_scan.check.sandbox_third_party_check import (
+    SandboxThirdPartyCheck,
+)
+from yoti_python_sandbox.doc_scan.check_reports import SandboxCheckReports
 
 
 def test_should_build_with_correct_properties():
@@ -31,6 +34,7 @@ def test_should_build_with_correct_properties():
     supplementary_text_data_check_mock = Mock(
         spec=SandboxSupplementaryDocumentTextDataCheck
     )
+    third_party_check_mock = Mock(spec=SandboxThirdPartyCheck)
     async_report_delay = 12
 
     check_reports = (
@@ -41,6 +45,7 @@ def test_should_build_with_correct_properties():
         .with_liveness_check(liveness_check_mock)
         .with_id_document_comparison_check(comparison_check_mock)
         .with_supplementary_document_text_data_check(supplementary_text_data_check_mock)
+        .with_third_party_check(third_party_check_mock)
         .with_async_report_delay(async_report_delay)
         .build()
     )
@@ -66,6 +71,8 @@ def test_should_build_with_correct_properties():
         == supplementary_text_data_check_mock
     )
 
+    assert check_reports.third_party_check is not None
+
     assert check_reports.async_report_delay == 12
 
 
@@ -78,6 +85,7 @@ def test_json_should_have_correct_properties():
     supplementary_text_data_check_mock = Mock(
         spec=SandboxSupplementaryDocumentTextDataCheck
     )
+    third_party_check_mock = Mock(spec=SandboxThirdPartyCheck)
     async_report_delay = 12
 
     check_reports = (
@@ -88,6 +96,7 @@ def test_json_should_have_correct_properties():
         .with_liveness_check(liveness_check_mock)
         .with_id_document_comparison_check(comparison_check_mock)
         .with_supplementary_document_text_data_check(supplementary_text_data_check_mock)
+        .with_third_party_check(third_party_check_mock)
         .with_async_report_delay(async_report_delay)
         .build()
     )
@@ -103,6 +112,7 @@ def test_json_should_have_correct_properties():
         == supplementary_text_data_check_mock
     )
     assert json.get("LIVENESS")[0] == liveness_check_mock
+    assert json.get("THIRD_PARTY_IDENTITY") == third_party_check_mock
     assert json.get("async_report_delay") == async_report_delay
 
 
@@ -118,6 +128,7 @@ def test_json_defaults_to_empty_array_for_checks():
     assert json.get("ID_DOCUMENT_COMPARISON") == []
     assert json.get("SUPPLEMENTARY_DOCUMENT_TEXT_DATA_CHECK") == []
     assert json.get("LIVENESS") == []
+    assert json.get("THIRD_PARTY_IDENTITY") is None
 
 
 def test_async_report_delay_not_included_when_not_specified():

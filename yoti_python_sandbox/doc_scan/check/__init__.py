@@ -17,3 +17,6 @@ from .report.detail import SandboxDetail  # noqa: F401
 from .sandbox_id_document_comparison_check import (  # noqa: F401
     SandboxIdDocumentComparisonCheckBuilder,
 )
+from .sandbox_third_party_check import (  # noqa: F401
+    SandboxThirdPartyCheckBuilder,
+)
