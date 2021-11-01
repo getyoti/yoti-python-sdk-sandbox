@@ -29,6 +29,7 @@ setup(
             "coverage==5.3",
             "mock==4.0.2",
             "virtualenv==20.1.0",
+            "pip-tools==6.4.0"
         ],
     },
     classifiers=[
