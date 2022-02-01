@@ -28,7 +28,7 @@ setup(
             "python-coveralls==2.9.3",
             "coverage==6.2",
             "mock==4.0.3",
-            "virtualenv==20.12.0",
+            "virtualenv==20.13.0",
             "pip-tools==6.4.0"
         ],
     },
