@@ -20,7 +20,7 @@ setup(
     install_requires=["yoti>=2.12.0", "cryptography>=2.8.0"],
     extras_require={
         "dev": [
-            "pre-commit==2.16.0",
+            "pre-commit==2.17.0",
             "pytest>=4.6.0",
             "pytest-cov>=2.7.1",
             "pylint==2.12.2",
