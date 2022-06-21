@@ -13,12 +13,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version: [3.7, 3.8, 3.9]
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-python@v2.1.4
+      - uses: actions/setup-python@v2.3.1
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -29,4 +29,3 @@ jobs:
       - run: pip install -e .[dev]
 
       - run: pytest -v
-
