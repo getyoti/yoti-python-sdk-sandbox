@@ -23,13 +23,13 @@ setup(
             "pre-commit==2.17.0",
             "pytest>=4.6.0",
             "pytest-cov>=2.7.1",
-            "pylint==2.12.2",
+            "pylint==2.14.3",
             "pylint-exit>=1.1.0",
             "python-coveralls==2.9.3",
-            "coverage==6.2",
+            "coverage==6.4.1",
             "mock==4.0.3",
             "virtualenv==20.13.0",
-            "pip-tools==6.4.0"
+            "pip-tools==6.6.2"
         ],
     },
     classifiers=[
