@@ -5,8 +5,8 @@ from yoti_python_sandbox.doc_scan.check.sandbox_check import SandboxCheckBuilder
 
 
 class SandboxIdDocumentComparisonCheck(SandboxCheck):
-    def __init__(self, result, secondary_document_filter):
-        SandboxCheck.__init__(self, result)
+    def __init__(self, result, secondary_document_filter, handled_check_limit=None):
+        SandboxCheck.__init__(self, result, handled_check_limit)
         self.__secondary_document_filter = secondary_document_filter
 
     @staticmethod
@@ -37,5 +37,5 @@ class SandboxIdDocumentComparisonCheckBuilder(SandboxCheckBuilder):
         report = SandboxCheckReport(self.recommendation, self.breakdown)
         result = SandboxCheckResult(report)
         return SandboxIdDocumentComparisonCheck(
-            result, self.__secondary_document_filter
+            result, self.__secondary_document_filter, self.handled_check_limit
         )

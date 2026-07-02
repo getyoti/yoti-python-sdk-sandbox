@@ -60,4 +60,6 @@ class SandboxSupplementaryDocumentTextDataCheckBuilder(SandboxDocumentCheckBuild
         result = SandboxSupplementaryDocumentTextDataCheckResult(
             report, self.__document_fields
         )
-        return SandboxSupplementaryDocumentTextDataCheck(result, self.document_filter)
+        return SandboxSupplementaryDocumentTextDataCheck(
+            result, self.document_filter, self.handled_check_limit
+        )
