@@ -2,8 +2,8 @@ from .sandbox_check import SandboxCheck
 
 
 class SandboxLivenessCheck(SandboxCheck):
-    def __init__(self, result, liveness_type):
-        SandboxCheck.__init__(self, result)
+    def __init__(self, result, liveness_type, handled_check_limit=None):
+        SandboxCheck.__init__(self, result, handled_check_limit)
         self.__liveness_type = liveness_type
 
     @property

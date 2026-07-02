@@ -18,4 +18,6 @@ class SandboxDocumentFaceMatchCheckBuilder(SandboxDocumentCheckBuilder):
     def build(self):
         report = SandboxCheckReport(self.recommendation, self.breakdown)
         result = SandboxCheckResult(report)
-        return SandboxDocumentFaceMatchCheck(result, self.document_filter)
+        return SandboxDocumentFaceMatchCheck(
+            result, self.document_filter, self.handled_check_limit
+        )

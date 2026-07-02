@@ -5,8 +5,8 @@ from yoti_python_sandbox.doc_scan.check.sandbox_check import SandboxCheckBuilder
 
 
 class SandboxDocumentCheck(SandboxCheck):
-    def __init__(self, result, document_filter):
-        SandboxCheck.__init__(self, result)
+    def __init__(self, result, document_filter, handled_check_limit=None):
+        SandboxCheck.__init__(self, result, handled_check_limit)
         self.__document_filter = document_filter
 
     @property

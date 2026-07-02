@@ -58,4 +58,6 @@ class SandboxDocumentTextDataCheckBuilder(SandboxDocumentCheckBuilder):
     def build(self):
         report = SandboxCheckReport(self.recommendation, self.breakdown)
         result = SandboxDocumentTextDataCheckResult(report, self.__document_fields)
-        return SandboxDocumentTextDataCheck(result, self.document_filter)
+        return SandboxDocumentTextDataCheck(
+            result, self.document_filter, self.handled_check_limit
+        )
